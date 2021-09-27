@@ -7,6 +7,10 @@ use App\stage;
 use App\tipo;
 use App\monster;
 use App\user;
+use App\pet;
+use App\monster_types;
+use App\stats_types;
+use App\monster_stats;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,13 +21,61 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        $this->typesSeed();
-        $this->monsterSeed();
+        
         $this->TypesSeed();
+        $this->StatsSeed();
+        $this->monsterSeed();
+
+        $this->UserSeed();
+
+        $this->PetSeed();
+
+
+
         $this->regionSeed();
 
         
     }
+
+    public function StatsSeed()
+    {
+        $st = new stats_types();
+        $st->name = 'atk';
+        $st->save();
+        $st = new stats_types();
+        $st->name = 'def';
+        $st->save();
+        $st = new stats_types();
+        $st->name = 'hp';
+        $st->save();
+
+    }
+
+
+
+    public function PetSeed()
+    {
+        $pet = new pet();
+        $pet->monster_id = monster::first()->id;
+        $pet->user_id = user::first()->id;
+        $pet->save();
+
+          $pet = new pet();
+        $pet->monster_id = monster::where('name','Sudowudo')->first()->id;
+        $pet->user_id = user::first()->id;
+        $pet->save();
+    }
+
+
+    public function UserSeed()
+    {
+        $u = new User();
+        $u->email = 'nick';
+        $u->password = Hash::make('1234');
+        $u->name = "nick";
+        $u->save();
+    }
+
 
     public function TypesSeed()
     {
@@ -63,6 +115,69 @@ class DatabaseSeeder extends Seeder
         $p->name = 'bulbasaur';
         $p->sprite = 'sprite';
         $p->save();
+
+        $t = new monster_types();
+
+        $t->monster_id = $p->id;
+        $t->tipo_id = 2;
+        $t->save();
+        
+
+
+        ///stats
+        
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 1;//atk
+        $ms->value = 25;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 2;//def
+        $ms->value = 20;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 3;//hp
+        $ms->value = 30;
+        $ms->save();
+
+        // 
+
+        $p2 = new monster();
+        $p2->name = 'Sudowudo';
+        $p2->sprite = 'sprite';
+        $p2->save();
+
+        $t = new monster_types();
+
+        $t->monster_id = $p2->id;
+        $t->tipo_id = 2;
+        $t->save();
+        $t = new monster_types();
+        $t->monster_id = $p2->id;
+        $t->tipo_id = 3;
+        $t->save();
+        
+        ///stats
+        
+        $ms = new monster_stats();
+        $ms->monster_id = $p2->id;
+        $ms->stat_id = 1;//atk
+        $ms->value = 28;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p2->id;
+        $ms->stat_id = 2;//def
+        $ms->value = 33;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p2->id;
+        $ms->stat_id = 3;//hp
+        $ms->value = 15;
+        $ms->save();
+
+
 
 
 
