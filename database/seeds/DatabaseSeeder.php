@@ -10,6 +10,7 @@ use App\user;
 use App\pet;
 use App\monster_types;
 use App\stats_types;
+use App\resistance_types;
 use App\monster_stats;
 class DatabaseSeeder extends Seeder
 {
@@ -23,19 +24,45 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
         
         $this->TypesSeed();
+        
+
+
         $this->StatsSeed();
         $this->monsterSeed();
 
         $this->UserSeed();
 
         $this->PetSeed();
-
+        $this->ResistanceSeed();
 
 
         $this->regionSeed();
 
         
     }
+
+    public function ResistanceSeed()
+    {
+
+        $r = new resistance_types();
+        $r->tipo_id = 2;
+        $r->other_id = 3;
+        $r->save();
+        $r = new resistance_types();
+        $r->tipo_id = 2;
+        $r->other_id = 4;
+        $r->save();
+        $r = new resistance_types();
+        $r->tipo_id = 2;
+        $r->other_id = 6;
+        $r->save();
+        $r = new resistance_types();
+        $r->tipo_id = 2;
+        $r->other_id = 2;
+        $r->save();
+
+    }
+
 
     public function StatsSeed()
     {
@@ -80,24 +107,24 @@ class DatabaseSeeder extends Seeder
     public function TypesSeed()
     {
         $types = [
-        'fuego'
-        ,'planta'
-        ,'agua'
-        ,'tierra'
-        ,'roca'
-        ,'electrico'
-        ,'acero'
-        ,'insecto'
-        ,'oscuro'
-        ,'psyquico'
-        ,'volador'
-        ,'normal'
-        ,'luchador'
-        ,'hielo'
-        ,'dragon'
-        ,'hada'
-        ,'fantasma'
-        ,'oscuro'];
+        'fuego'//1
+        ,'planta'//2
+        ,'agua'//3
+        ,'tierra'//4
+        ,'roca'//5
+        ,'electrico'//6
+        ,'acero'//7
+        ,'insecto'//8
+        ,'oscuro'//9
+        ,'psyquico'//10
+        ,'volador'//11
+        ,'normal'//12
+        ,'luchador'//13
+        ,'hielo'//14
+        ,'dragon'//15
+        ,'hada'//16
+        ,'fantasma'//17
+        ,'oscuro'];//18
 
             foreach ($types as $key => $value) {
                 $t = new tipo();
