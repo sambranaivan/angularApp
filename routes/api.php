@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('user/detalle','UserController@detalle');
+Route::post('user/team','UserController@team');
+Route::get('tipos','TiposController@get');
