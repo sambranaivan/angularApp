@@ -53,12 +53,32 @@ class UserController extends Controller
     }
 
 
-    public function login(request $request)
+     public function shards(request $request)
     {
-    
-        
-        ///primera vez 
-        
+        $data =  DB::select('call get_shard(?)',array($request->id));
+        // $response = [];
+        // foreach ($data as $val) 
+        // {
+          
+        //     $response[$val->id]['name'] = $val->name;
+        //     $response[$val->id]['id'] = $val->id;
+        //     if($val->stat == 'tipo')
+        //     {
+        //         $response[$val->id]['tipos'][] = $val->value;
+        //     }
+        //     else
+        //     {
+        //         $response[$val->id][$val->stat] = $val->value;
+        //     }
+
+
+            
+        // }
+        // return $response;
+        // dd($response);
+        return response()->json($data,200);
+
+
 
     }
 

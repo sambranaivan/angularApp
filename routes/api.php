@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('user/detalle','UserController@detalle');
 Route::post('user/team','UserController@team');
+Route::post('user/shards','UserController@shards');
 Route::get('tipos','TiposController@get');

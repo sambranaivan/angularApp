@@ -87,8 +87,13 @@ class DatabaseSeeder extends Seeder
         $pet->user_id = user::first()->id;
         $pet->save();
 
-          $pet = new pet();
+        $pet = new pet();
         $pet->monster_id = monster::where('name','Sudowudo')->first()->id;
+        $pet->user_id = user::first()->id;
+        $pet->save();
+
+        $pet = new pet();
+        $pet->monster_id = monster::where('name','Charizard')->first()->id;
         $pet->user_id = user::first()->id;
         $pet->save();
     }
@@ -140,7 +145,7 @@ class DatabaseSeeder extends Seeder
 
         $p = new monster();
         $p->name = 'bulbasaur';
-        $p->sprite = 'sprite';
+        $p->sprite = 1;
         $p->save();
 
         $t = new monster_types();
@@ -173,7 +178,7 @@ class DatabaseSeeder extends Seeder
 
         $p2 = new monster();
         $p2->name = 'Sudowudo';
-        $p2->sprite = 'sprite';
+        $p2->sprite = 185;
         $p2->save();
 
         $t = new monster_types();
@@ -204,7 +209,38 @@ class DatabaseSeeder extends Seeder
         $ms->value = 15;
         $ms->save();
 
+        // 
+        $p = new monster();
+        $p->name = 'Charizard';
+        $p->sprite = 6;
+        $p->save();
 
+        $t = new monster_types();
+
+        $t->monster_id = $p->id;
+        $t->tipo_id = tipo::where('name','fuego')->first()->id;
+        $t->save();
+        
+
+
+        ///stats
+        
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 1;//atk
+        $ms->value = 45;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 2;//def
+        $ms->value = 63;
+        $ms->save();
+        $ms = new monster_stats();
+        $ms->monster_id = $p->id;
+        $ms->stat_id = 3;//hp
+        $ms->value = 50;
+        $ms->save();
+        
 
 
 
