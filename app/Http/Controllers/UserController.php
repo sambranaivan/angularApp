@@ -53,34 +53,36 @@ class UserController extends Controller
     }
 
 
-     public function shards(request $request)
+    public function shards(request $request)
     {
         $data =  DB::select('call get_shard(?)',array($request->id));
-        // $response = [];
-        // foreach ($data as $val) 
-        // {
-          
-        //     $response[$val->id]['name'] = $val->name;
-        //     $response[$val->id]['id'] = $val->id;
-        //     if($val->stat == 'tipo')
-        //     {
-        //         $response[$val->id]['tipos'][] = $val->value;
-        //     }
-        //     else
-        //     {
-        //         $response[$val->id][$val->stat] = $val->value;
-        //     }
-
-
-            
-        // }
-        // return $response;
-        // dd($response);
+    
         return response()->json($data,200);
 
-
+    }
+    
+    public function region_progress(request $request)
+    {
+        $data =  DB::select('call get_region_progress(?)',array($request->id));
+    
+        return response()->json($data,200);
 
     }
+
+    // public function progress($)
+    // {
+
+
+
+
+    //     ///expected
+    //     /**
+    //      * [
+    //      *      region:[
+    //      *          ]
+    //      * ]
+    //      */
+    // }
 
 
 }

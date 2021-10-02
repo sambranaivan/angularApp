@@ -250,30 +250,44 @@ class DatabaseSeeder extends Seeder
 
     public function regionSeed()
     {
-        $region = new region();
-        $region->name = "Kanto";
-        $region->save();
+        
+        $regiones = ['kanto','jotho','hoenn','unova','teselia','kalos','alola','galar'];
+
+        $_regiones = [];
+        foreach ($regiones as $r) {
+            $region = new region();
+            $region->name = $r;
+            $region->save();
+            $_regiones[] = $region;
+        }       
 
 
-        $route = new route();
-        $route->region_id = $region->id;
-        $route->name = "Ruta 1";
-        $route->save();
+
+        foreach ($_regiones as $region) {
+            
+                for ($j=1; $j <= 10; $j++) { 
+                                $route = new route();
+                                $route->region_id = $region->id;
+                                $route->name = "Ruta ".$j;
+                                $route->save();
+
+                                for ($i=1; $i <= 10; $i++) { 
+                                $stage = new stage();
+                                $stage->route_id = $route->id;
+                                $stage->stage_nro = $i;
+                                $stage->name = 'Stage '.$i;
+                                $stage->save();
+                                }
+                }
 
 
-        for ($i=1; $i <= 10; $i++) { 
-            $stage = new stage();
-            $stage->route_id = $route->id;
-            $stage->stage_nro = $i;
-            $stage->name = 'Stage '.$i;
-            $stage->save();
         }
-
 
         
 
-
     }
+
+    
 
 
 
