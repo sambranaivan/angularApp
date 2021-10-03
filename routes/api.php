@@ -22,6 +22,7 @@ Route::post('user/detalle','UserController@detalle');
 Route::post('user/team','UserController@team');
 Route::post('user/shards','UserController@shards');
 Route::post('user/region_progress','UserController@region_progress');
+Route::post('user/city_progress','UserController@city_progress');
 
 
 Route::get('tipos','TiposController@get');

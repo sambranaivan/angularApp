@@ -68,6 +68,13 @@ class UserController extends Controller
         return response()->json($data,200);
 
     }
+        public function city_progress(request $request)
+    {
+        $data =  DB::select('call get_city_progress(?,?)',array($request->id,$request->region_id));
+    
+        return response()->json($data,200);
+
+    }
 
     // public function progress($)
     // {
