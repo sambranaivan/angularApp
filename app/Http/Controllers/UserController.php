@@ -76,6 +76,14 @@ class UserController extends Controller
 
     }
 
+    public function stage_progress(request $request)
+    {
+        $data =  DB::select('call get_stage_progress(?,?)',array($request->id,$request->city_id));
+    
+        return response()->json($data,200);
+
+    }
+
     // public function progress($)
     // {
 
